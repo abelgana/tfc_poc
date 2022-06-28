@@ -1,0 +1,44 @@
+module "sql-db" {
+  source  = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
+  version = "10.0.1"
+
+  project_id                      = data.tfe_outputs.foundation.values.svc_project_id
+  name                            = var.name
+  database_version                = var.database_version
+  region                          = var.region
+  zone                            = var.zone
+  tier                            = var.tier
+  activation_policy               = var.activation_policy
+  availability_type               = var.availability_type
+  disk_autoresize                 = var.disk_autoresize
+  disk_size                       = var.disk_size
+  disk_type                       = var.disk_type
+  maintenance_window_day          = var.maintenance_window_day
+  maintenance_window_hour         = var.maintenance_window_hour
+  maintenance_window_update_track = var.maintenance_window_update_track
+  user_labels                     = var.user_labels
+  database_flags                  = var.database_flags
+  backup_configuration            = var.backup_configuration
+  ip_configuration = {
+    authorized_networks = []
+    allocated_ip_range  = data.tfe_outputs.foundation.values.postresql_ip_range
+    ipv4_enabled        = false
+    require_ssl         = true
+    private_network     = data.tfe_outputs.foundation.values.vpc_id
+  }
+  read_replicas                    = var.read_replicas
+  read_replica_name_suffix         = var.read_replica_name_suffix
+  user_name                        = var.user_name
+  user_password                    = var.user_password
+  additional_users                 = var.additional_users
+  iam_user_emails                  = var.iam_user_emails
+  create_timeout                   = var.create_timeout
+  update_timeout                   = var.update_timeout
+  delete_timeout                   = var.delete_timeout
+  encryption_key_name              = var.encryption_key_name
+  module_depends_on                = var.module_depends_on
+  deletion_protection              = var.deletion_protection
+  read_replica_deletion_protection = var.read_replica_deletion_protection
+  enable_default_db                = var.enable_default_db
+  enable_default_user              = var.enable_default_user
+}
