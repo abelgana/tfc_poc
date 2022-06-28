@@ -1,4 +1,5 @@
 resource "google_cloudbuild_worker_pool" "private_pool" {
+  project  = data.tfe_outputs.foundation.values.svc_project_id
   name     = var.name
   location = var.region
   worker_config {
@@ -7,6 +8,6 @@ resource "google_cloudbuild_worker_pool" "private_pool" {
     no_external_ip = true
   }
   network_config {
-    peered_network = data.tfe_outputs.foundation.values.vpc_id
+    peered_network = "projects/${data.tfe_outputs.foundation.values.host_project_number}/global/networks/${data.tfe_outputs.foundation.values.vpc_name}"
   }
 }
