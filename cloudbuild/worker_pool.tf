@@ -9,7 +9,7 @@ resource "google_cloudbuild_worker_pool" "private_pool" {
     machine_type   = "e2-standard-4"
     no_external_ip = true
   }
-  network_config {
-    peered_network = "projects/${data.tfe_outputs.foundation.values.host_project_number}/global/networks/${data.tfe_outputs.foundation.values.vpc_name}"
-  }
+  // network_config {
+  //   peered_network = "projects/${data.tfe_outputs.foundation.values.host_project_number}/global/networks/${data.tfe_outputs.foundation.values.vpc_name}"
+  // }
 }
