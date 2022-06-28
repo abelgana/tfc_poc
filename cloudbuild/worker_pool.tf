@@ -1,4 +1,6 @@
 resource "google_cloudbuild_worker_pool" "private_pool" {
+  provider = google-beta
+
   project  = data.tfe_outputs.foundation.values.svc_project_id
   name     = var.name
   location = var.region
