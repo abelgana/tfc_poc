@@ -264,7 +264,7 @@ variable "enable_private_nodes" {
 variable "master_ipv4_cidr_block" {
   type        = string
   description = "(Beta) The IP range in CIDR notation to use for the hosted master network"
-  default     = "192.168.0.0/22"
+  default     = "192.168.0.0/28"
 }
 
 variable "identity_namespace" {
