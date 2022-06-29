@@ -1,8 +1,8 @@
 resource "google_cloudbuild_worker_pool" "private_pool" {
-  name = "default-private-pool-local"
+  name = var.name
 
-  project  = "svc-project-25e0"
-  location = "us-east4"
+  project  = data.tfe_outputs.foundation.values.svc_project_id
+  location = var.region
   worker_config {
     disk_size_gb   = 100
     machine_type   = "e2-standard-4"
@@ -10,6 +10,6 @@ resource "google_cloudbuild_worker_pool" "private_pool" {
   }
 
   network_config {
-    peered_network = "projects/host-project-013e/global/networks/shared-vpc"
+    peered_network = data.tfe_outputs.foundation.values.vpc_id
   }
 }
