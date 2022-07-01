@@ -5,15 +5,15 @@ module "region_projects_iam_bindings" {
   projects = [module.svc_project.project_id]
 
   bindings = {
-    "roles/compute.networkUser" = [
-      local.svc_project_gke_sa,
-    ]
-    "roles/compute.securityAdmin" = [
-      local.svc_project_gke_sa,
-    ]
-    "roles/container.hostServiceAgentUser" = [
-      local.svc_project_gke_sa,
-    ]
+    // "roles/compute.networkUser" = [
+    //   local.svc_project_gke_sa,
+    // ]
+    // "roles/compute.securityAdmin" = [
+    //   local.svc_project_gke_sa,
+    // ]
+    // "roles/container.hostServiceAgentUser" = [
+    //   local.svc_project_gke_sa,
+    // ]
   }
 }
 
