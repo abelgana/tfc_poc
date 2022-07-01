@@ -1,0 +1,37 @@
+steps:
+  - id: "docker-build"
+    name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "${_IMAGE_NAME}", "postgresql/migration/."]
+
+  - id: "docker-push"
+    name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_IMAGE_NAME}"]
+
+  - id: "migration"
+    name: "${_IMAGE_NAME}"
+    dir: "postgresql/migration"
+    env:
+      - "DATABASE_NAME=${_DATABASE_NAME}"
+      - "DATABASE_USER=${_DATABASE_USER}"
+      - "DATABASE_HOST=${_DATABASE_HOST}"
+      - "DATABASE_TYPE=${_DATABASE_TYPE}"
+    secretEnv:
+      - DATABASE_PASS
+      - DATABASE_USER
+    entrypoint: python   # for example
+    args: ["migrate.py"] # for example
+
+options:
+  pool:
+    name: projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool
+  dynamic_substitutions: true
+
+substitutions:
+  _DATABASE_PASSWORD_KEY: database_password
+  _DATABASE_TYPE: postgres
+  _IMAGE_NAME: gcr.io/${PROJECT_ID}/tfc-poc-image
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/${_DATABASE_PASSWORD_KEY}/versions/latest
+      env: DATABASE_PASS

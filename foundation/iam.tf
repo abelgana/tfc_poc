@@ -18,5 +18,6 @@ module "region_projects_iam_bindings" {
 }
 
 locals {
-  svc_project_gke_sa = "serviceAccount:service-${module.host_project.project_number}@container-engine-robot.iam.gserviceaccount.com"
+  svc_project_gke_sa   = "serviceaccount:service-${module.host_project.project_number}@container-engine-robot.iam.gserviceaccount.com"
+  svc_project_build_sa = "serviceaccount:${module.host_project.project_number}@cloudbuild.gserviceaccount.com"
 }

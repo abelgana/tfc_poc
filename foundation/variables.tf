@@ -30,7 +30,7 @@ variable "host_project_apis" {
 
 variable "svc_project_apis" {
   type    = list(string)
-  default = ["servicenetworking.googleapis.com", "sqladmin.googleapis.com", "container.googleapis.com"]
+  default = ["cloudbuild.googleapis.com", "servicenetworking.googleapis.com", "sqladmin.googleapis.com", "container.googleapis.com"]
 }
 
 variable "region" {
