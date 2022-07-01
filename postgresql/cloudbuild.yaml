@@ -3,5 +3,5 @@ steps:
   args: ['echo', 'I did run']
 options:
   pool:
-    name: projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool
+    name: projects/$PROJECT_ID/locations/us-east4/workerPools/private-pool
   dynamic_substitutions: true
