@@ -39,12 +39,11 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
   webhook_config {
     secret = google_secret_manager_secret_version.webhook_trigger_secret_key_data.id
   }
-
-  trigger_template {
-    branch_name = "main"
-    repo_name   = "github_abelgana_tfc_poc"
+  source_to_build {
+    repo_type = "CLOUD_SOURCE_REPOSITORIES"
+    uri       = "github_abelgana_tfc_poc"
+    ref       = "refs/heads/main"
   }
-
   build {
     step {
       name    = "shell"
