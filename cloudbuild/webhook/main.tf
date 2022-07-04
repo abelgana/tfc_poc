@@ -51,11 +51,10 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
       args    = ["echo", "I did run"]
       timeout = "120s"
     }
-  }
-
-  options {
-    dynamic_substitutions = true
-    log_streaming_option  = "STREAM_OFF"
-    worker_pool           = "projects/$PROJECT_ID/locations/us-east4/workerPools/private-pool"
+    options {
+      dynamic_substitutions = true
+      log_streaming_option  = "STREAM_OFF"
+      worker_pool           = "projects/$PROJECT_ID/locations/us-east4/workerPools/private-pool"
+    }
   }
 }
