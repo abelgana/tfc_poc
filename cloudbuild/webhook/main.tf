@@ -40,7 +40,7 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
     secret = google_secret_manager_secret_version.webhook_trigger_secret_key_data.id
   }
   source_to_build {
-    repo_type = "CLOUD_SOURCE_REPOSITORIES"
+    repo_type = "GITHUB"
     uri       = "github_abelgana_tfc_poc"
     ref       = "refs/heads/main"
   }
