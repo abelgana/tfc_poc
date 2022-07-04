@@ -7,3 +7,7 @@ variable "region" {
   description = "The region of the Cloud SQL resources"
   default     = "us-east4"
 }
+
+variable "secret" {
+  type = string
+}

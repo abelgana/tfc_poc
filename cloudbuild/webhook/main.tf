@@ -13,7 +13,7 @@ resource "google_secret_manager_secret" "webhook_trigger_secret_key" {
 resource "google_secret_manager_secret_version" "webhook_trigger_secret_key_data" {
   secret = google_secret_manager_secret.webhook_trigger_secret_key.id
 
-  secret_data = "secretkeygoeshere"
+  secret_data = var.secret
 }
 
 data "google_iam_policy" "secret_accessor" {
@@ -50,6 +50,17 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
       dynamic_substitutions = true
       log_streaming_option  = "STREAM_OFF"
       worker_pool           = "projects/$PROJECT_ID/locations/us-east4/workerPools/private-pool"
+    }
+  }
+}
+
+resource "google_apikeys_key" "primary" {
+  name         = "managedcloudbuildkey"
+  display_name = "sample-cloud-build-key"
+
+  restrictions {
+    api_targets {
+      service = "cloudbuild.googleapis.com"
     }
   }
 }
