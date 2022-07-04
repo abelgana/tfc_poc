@@ -11,3 +11,8 @@ variable "region" {
 variable "secret" {
   type = string
 }
+
+variable "name" {
+  type    = string
+  default = "trigger webhook"
+}
