@@ -46,7 +46,7 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
   }
   build {
     step {
-      name    = "shell"
+      name    = "bash"
       args    = ["echo", "I did run"]
       timeout = "120s"
     }
