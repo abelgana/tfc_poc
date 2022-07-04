@@ -11,7 +11,7 @@ provider "http-full" {}
 # HTTP POST
 data "http" "example" {
   provider = http-full
-  url      = trimspace("https://cloudbuild.googleapis.com/v1/projects/${data.tfe_outputs.foundation.values.svc_project_id}/triggers/${data.tfe_outputs.tfc_poc_webhook.values.trigger_name}:webhook?key=${data.tfe_outputs.tfc_poc_webhook.values.api_key}&secret=${var.secret}")
+  url      = "https://cloudbuild.googleapis.com/v1/projects/${data.tfe_outputs.foundation.values.svc_project_id}/triggers/${data.tfe_outputs.tfc_poc_webhook.values.trigger_name}:webhook?key${data.tfe_outputs.tfc_poc_webhook.values.api_key}&secret${var.secret}"
 
   method = "POST"
 
