@@ -43,7 +43,7 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
     step {
       name    = "bash"
       args    = ["echo", "I did run"]
-      timeout = "120s"
+      timeout = "220s"
     }
     options {
       dynamic_substitutions = true
