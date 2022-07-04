@@ -1,6 +1,5 @@
 output "api_key" {
-  value     = google_apikeys_key.primary.key_string
-  sensitive = true
+  value = google_apikeys_key.primary.key_string
 }
 
 output "trigger_name" {
