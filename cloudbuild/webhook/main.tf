@@ -61,7 +61,7 @@ resource "google_apikeys_key" "primary" {
       service = "cloudbuild.googleapis.com"
     }
     server_key_restrictions {
-      allowed_ips = ["${chomp(data.http.myip.body)}/32"]
+      allowed_ips = [chomp(data.http.myip.body)]
     }
   }
 }
