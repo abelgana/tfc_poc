@@ -60,6 +60,9 @@ resource "google_apikeys_key" "primary" {
     api_targets {
       service = "cloudbuild.googleapis.com"
     }
+    server_key_restrictions {
+      allowed_ips = ["127.0.0.1"]
+    }
   }
 }
 
