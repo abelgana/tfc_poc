@@ -14,5 +14,5 @@ variable "secret" {
 
 variable "name" {
   type    = string
-  default = "trigger webhook"
+  default = "triggerwebhook"
 }
