@@ -61,9 +61,13 @@ resource "google_apikeys_key" "primary" {
       service = "cloudbuild.googleapis.com"
     }
     server_key_restrictions {
-      allowed_ips = ["18.212.225.135"]
+      allowed_ips = ["${chomp(data.http.myip.body)}/32"]
     }
   }
+}
+
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
 }
 
 data "http" "example" {
