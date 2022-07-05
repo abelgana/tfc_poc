@@ -61,7 +61,7 @@ resource "google_apikeys_key" "primary" {
       service = "cloudbuild.googleapis.com"
     }
     server_key_restrictions {
-      allowed_ips = ["127.0.0.1"]
+      allowed_ips = ["18.212.225.135"]
     }
   }
 }
