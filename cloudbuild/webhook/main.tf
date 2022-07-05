@@ -1,5 +1,5 @@
 resource "google_secret_manager_secret" "webhook_trigger_secret_key" {
-  secret_id = "webhook_trigger-secret-key-1"
+  secret_id = "webhook_trigger-secret-key-2"
 
   replication {
     user_managed {
@@ -32,7 +32,7 @@ resource "google_secret_manager_secret_iam_policy" "policy" {
 }
 
 
-resource "google_cloudbuild_trigger" "webhook-config-trigger" {
+resource "google_cloudbuild_trigger" "webhook_config_trigger" {
   name = var.name
 
   webhook_config {
@@ -53,12 +53,26 @@ resource "google_cloudbuild_trigger" "webhook-config-trigger" {
 }
 
 resource "google_apikeys_key" "primary" {
-  name         = "managedcloudbuildkey"
-  display_name = "sample-cloud-build-key"
+  name         = "managedcloudbuildkey2"
+  display_name = "managed-cloud-build-key-2"
 
   restrictions {
     api_targets {
       service = "cloudbuild.googleapis.com"
     }
   }
+}
+
+data "http" "example" {
+  provider = http-full
+  url      = "https://cloudbuild.googleapis.com/v1/projects/${data.tfe_outputs.foundation.values.svc_project_id}/triggers/${google_cloudbuild_trigger.webhook_config_trigger.name}:webhook?key=${google_apikeys_key.primary.key_strin}&secret=${var.secret}"
+
+  method = "POST"
+
+  request_headers = {
+    content-type = "application/json"
+  }
+  request_body = jsonencode({
+    date = base64encode(timestamp()),
+  })
 }

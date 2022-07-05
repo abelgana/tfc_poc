@@ -9,3 +9,13 @@ provider "google-beta" {
   access_token = var.access_token
   region       = var.region
 }
+
+provider "http-full" {}
+
+terraform {
+  required_providers {
+    http-full = {
+      source = "salrashid123/http-full"
+    }
+  }
+}

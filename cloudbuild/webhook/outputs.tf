@@ -1,8 +1,8 @@
-output "api_key" {
-  value     = google_apikeys_key.primary.key_string
-  sensitive = true
-}
-
-output "trigger_name" {
-  value = google_cloudbuild_trigger.webhook-config-trigger.name
-}
+// output "api_key" {
+// output "api_key" {  value     = google_apikeys_key.primary.key_string
+// output "api_key" {  sensitive = true
+// output "api_key" {  value     = google_apikeys_key.primary.key_string
+// output "api_key" {  sensitive = true
+// output "api_key" {}output "api_key" {
+// output "api_key" {
+// output "api_key" {output "trigger_name" {
