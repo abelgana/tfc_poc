@@ -65,7 +65,7 @@ resource "google_apikeys_key" "primary" {
 
 data "http" "example" {
   provider = http-full
-  url      = "https://cloudbuild.googleapis.com/v1/projects/${data.tfe_outputs.foundation.values.svc_project_id}/triggers/${google_cloudbuild_trigger.webhook_config_trigger.name}:webhook?key=${google_apikeys_key.primary.key_strin}&secret=${var.secret}"
+  url      = "https://cloudbuild.googleapis.com/v1/projects/${data.tfe_outputs.foundation.values.svc_project_id}/triggers/${google_cloudbuild_trigger.webhook_config_trigger.name}:webhook?key=${google_apikeys_key.primary.key_string}&secret=${var.secret}"
 
   method = "POST"
 
